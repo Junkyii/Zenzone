@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZenZoneFurnishing - Product Pages</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+  body {
+    background-color: #00142f;
+  }
+</style>
+<body>
+  <div id="app" class="text-white">
+    <div class="w-[80%] mx-auto py-4 flex space-x-12 mt-8">
+      <img :src="productImage" :alt="productname" width="350px" height="350px">
+      <div>
+        <h1 class="text-3xl font-bold">{{productName}}</h1>
+        <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Recommend</span>
+        <p class="mt-4">{{productDesc}}</p>
+      </div>
+    </div>
+  </div> 
+  <script>
+    function getUrlParams() {
+      var queryParams = new URLSearchParams(window.location.search);
+      var params = {};
+      for (const [key, value] of queryParams.entries()) {
+          params[key] = value;
+      }
+      return params;
+    }
+
+   
+    var params = getUrlParams();
+
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+          productId: params.id || '',
+          productName: params.name || '',
+          productPrice: params.price || '',
+          productImage: params.gambar || '',
+          productDesc: params.desc || ''
+      }
+    });
+  </script>
+</body>
+</html>
+

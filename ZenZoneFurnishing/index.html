@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ZenZoneFurnishing</title>
+
+    <!-- Vue CDN --> <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <!-- Tailwindcss CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <style>
+    body {
+      
+      background-image: url('assets/ruangannn.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <nav
+        class="flex justify-between bg-[#29374a] px-10 py-4 mb-8 text-white"
+      >
+        <h1 class="text-center font-bold text-2xl opacity-80">-ZenZoneFurnishing-</h1>
+        <ul class="md:flex items-center space-x-10">
+          <li class="hidden md:block">
+            <a href="#">Home</a>
+          </li>
+          <li class="hidden md:block">
+            <a href="#">Product</a>
+          </li>
+          <li class="hidden md:block">
+            <a href="#">Service</a>
+          </li>
+          <li class="hidden md:block">
+            <a href="#">Contact us</a>
+          </li>
+          <div class="flex space-x-5">
+          <li class="flex items-center" @click="cekCart()">
+            <button class="CartBtn">
+              <span class="IconContainer"> 
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="rgb(17, 17, 17)" class="cart"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path></svg>
+              </span>
+              <p class="text">Add to Cart</p>
+            </button>
+          </li>
+          <li class="flex items-center" @click="clearCart()">
+            <button class="tooltip">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" height="25" width="25">
+                <path fill="#6361D9" d="M8.78842 5.03866C8.86656 4.96052 8.97254 4.91663 9.08305 4.91663H11.4164C11.5269 4.91663 11.6329 4.96052 11.711 5.03866C11.7892 5.11681 11.833 5.22279 11.833 5.33329V5.74939H8.66638V5.33329C8.66638 5.22279 8.71028 5.11681 8.78842 5.03866ZM7.16638 5.74939V5.33329C7.16638 4.82496 7.36832 4.33745 7.72776 3.978C8.08721 3.61856 8.57472 3.41663 9.08305 3.41663H11.4164C11.9247 3.41663 12.4122 3.61856 12.7717 3.978C13.1311 4.33745 13.333 4.82496 13.333 5.33329V5.74939H15.5C15.9142 5.74939 16.25 6.08518 16.25 6.49939C16.25 6.9136 15.9142 7.24939 15.5 7.24939H15.0105L14.2492 14.7095C14.2382 15.2023 14.0377 15.6726 13.6883 16.0219C13.3289 16.3814 12.8414 16.5833 12.333 16.5833H8.16638C7.65805 16.5833 7.17054 16.3814 6.81109 16.0219C6.46176 15.6726 6.2612 15.2023 6.25019 14.7095L5.48896 7.24939H5C4.58579 7.24939 4.25 6.9136 4.25 6.49939C4.25 6.08518 4.58579 5.74939 5 5.74939H6.16667H7.16638ZM7.91638 7.24996H12.583H13.5026L12.7536 14.5905C12.751 14.6158 12.7497 14.6412 12.7497 14.6666C12.7497 14.7771 12.7058 14.8831 12.6277 14.9613C12.5495 15.0394 12.4436 15.0833 12.333 15.0833H8.16638C8.05588 15.0833 7.94989 15.0394 7.87175 14.9613C7.79361 14.8831 7.74972 14.7771 7.74972 14.6666C7.74972 14.6412 7.74842 14.6158 7.74584 14.5905L6.99681 7.24996H7.91638Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+              </svg>
+              <span class="tooltiptext">remove</span>
+            </button>
+          </li>
+          </div>
+        </ul>
+      </nav>
+      <div class="relative overflow-x-auto rounded-md">
+
+      <form class="px-8 max-w-md mx-auto mb-6">   
+          <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+          <div class="relative">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>
+              </div>
+              <div class="flex items-center justify-center p-5">
+                <div class="rounded-lg bg-gray-200 p-5">
+                  <div class="flex">
+                    <div class="flex w-10 items-center justify-center rounded-tl-lg rounded-bl-lg border-r border-gray-200 bg-white p-5">
+                      <svg viewBox="0 0 20 20" aria-hidden="true" class="pointer-events-none absolute w-5 fill-gray-500 transition">
+                        <path d="M16.72 17.78a.75.75 0 1 0 1.06-1.06l-1.06 1.06ZM9 14.5A5.5 5.5 0 0 1 3.5 9H2a7 7 0 0 0 7 7v-1.5ZM3.5 9A5.5 5.5 0 0 1 9 3.5V2a7 7 0 0 0-7 7h1.5ZM9 3.5A5.5 5.5 0 0 1 14.5 9H16a7 7 0 0 0-7-7v1.5Zm3.89 10.45 3.83 3.83 1.06-1.06-3.83-3.83-1.06 1.06ZM14.5 9a5.48 5.48 0 0 1-1.61 3.89l1.06 1.06A6.98 6.98 0 0 0 16 9h-1.5Zm-1.61 3.89A5.48 5.48 0 0 1 9 14.5V16a6.98 6.98 0 0 0 4.95-2.05l-1.06-1.06Z"></path>
+                      </svg>
+                    </div>
+                    <input type="text" class="w-full max-w-[160px] bg-white pl-2 text-base font-semibold outline-0" placeholder="" id="">
+                    <input type="button" value="Search" class="bg-blue-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors">
+                  </div>
+                </div>
+              </div>
+          </div>
+      </form>
+
+      <div class="overflow-x-auto">
+        <table
+          class="table-auto w-[70%] mx-auto mt-4 text-sm text-left rtl:text-right text-gray-300 dark:text-gray-400 rounded-md text-lg"
+        >
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400" 
+          >
+            <tr>
+              <th scope="col" class="px-6 py-3">Product picture</th>
+              <th scope="col" class="px-6 py-3">Product Name</th>
+              <th scope="col" class="px-6 py-3">Price</th>
+              <th scope="col" class="px-6 py-3 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="products in filteredItems"
+              :key="products.id"
+              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+            >
+              <td class="px-6 py-4">
+                <img v-bind:src="products.gambar" height="50px" width="100px" />
+              </td>
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {{products.name}}
+              </th>
+              <td class="px-2 py-2">{{products.price | currency}}</td>
+              <td class="px-2 py-2 text-center">
+                <button
+                  @click="lihatProduk(products.id, products.gambar, products.name, products.price, products.description)"
+                  class="focus:outline-none text-white mx-auto  bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >Lihat</button>
+                <button
+                  @click="tambahKeranjang(products)"
+                  class="focus:outline-none text-white mx-auto  bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                >Keranjang</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <footer class="mt-12 w-full bg-[#29374a] p-4 text-white">
+        <h1 class="text-center text-sm opacity-80">ZenZoneFurnishing © 2027</h1>
+      </footer>
+    </div>
+  </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const barangKeranjang = localStorage.getItem('totalBarang') || 0;
+
+      Vue.filter('currency', function (value) {
+        if (!value) return ''
+        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(value)
+      });
+      var app = new Vue({
+        el: "#app",
+        data: {
+          keranjang: 0,
+          search: '',
+          totalBarang: barangKeranjang,
+          listKeranjang: [],
+          product: [
+            
+            {
+              
+              id: 1,
+              gambar:
+                "assets/kasur1.png",
+              name: "Kasur",
+              price: 2200000,
+              description: "Rasakan tidur yang nyaman dengan kasur berkualitas tinggi ini. Dibuat dengan bahan yang berkualitas untuk memberikan dukungan yang tepat dan tidur yang nyenyak setiap malam."
+            },
+            {
+              id: 2,
+              gambar:
+                "assets/kursi3.png",
+              name: "Kursi",
+              price: 230000,
+              description: "Hadirkan kenyamanan maksimal ke ruang tamu atau kantor Anda dengan kursi ergonomis ini. Dirancang dengan perhatian pada detail untuk memberikan dukungan yang optimal dan gaya yang menawan."
+            },
+            {
+              id: 3,
+              gambar:
+                "assets/mejakerja.png",
+              name: "Meja Kerja",
+              price: 1300000,
+              description: "Tingkatkan pengalaman bekerja Anda dengan meja kerja ini . Dilengkapi dengan rak dan laci yang cukup untuk menyimpan buku dan perlengkapan kerja lainnya dengan rapi."
+            },
+            {
+              id: 4,
+              gambar:
+                "assets/lemari2.png",
+              name: "Lemari",
+              price: 600000,
+              description: "Tambahkan sentuhan elegan ke ruang Anda dengan lemari ini. Didesain dengan desain yang klasik dan fungsional, lemari ini ideal untuk menyimpan pakaian dan barang-barang lainnya dengan teratur."
+            },
+            {
+              id: 5,
+              gambar:
+                "assets/sofa4.png",
+              name: "Sofa Itali",
+              price: 4500000,
+              description: "Ciptakan suasana yang hangat dan nyaman di ruang keluarga atau ruang tamu Anda dengan sofa ini. Dibuat dengan bahan berkualitas dan desain yang stylish, sofa ini akan menjadi pusat perhatian dalam ruangan."
+            },
+            {
+               id: 6,
+               gambar: "assets/lemaribuu.png",
+               name: "Lemari Buku",
+              price: 850000,
+              description: "Atur buku Anda dengan penuh gaya dengan rak buku elegan ini. Rak ini menawarkan ruang penyimpanan yang luas dan menambah sentuhan kecanggihan pada ruangan mana pun."
+            },
+            {
+              id: 7,
+               gambar: "assets/sofapijat.png",
+               name: "Kursi Pijat",
+              price: 3200000,
+              description: "Desain ergonomis Kursi pijat sering kali dirancang dengan perhatian pada ergonomi, dengan bantalan yang dirancang untuk mendukung berbagai posisi tubuh dan memastikan kenyamanan maksimal selama penggunaan."
+            },
+            {
+              id: 8,
+               gambar: "assets/lampu_tidur.png",
+               name: "Lampu Tidur",
+              price: 240000,
+              description:"Hadapi tantangan penyimpanan dengan gaya menggunakan kabinet multifungsi kami yang dirancang dengan sentuhan modern. Dengan ruang penyimpanan yang luas dan desain yang elegan, kabinet ini adalah solusi sempurna untuk menyimpan barang-barang Anda dengan rapi sambil menambahkan pesona visual yang menawan ke dalam ruang Anda."  
+            },
+            {
+              id: 9,
+               gambar: "assets/kabinet.png",
+               name: "Kabinet",
+              price: 865000,
+              description: "Nikmati malam yang tenang dan nyaman dengan bantuan lampu tidur LED kami. Dengan desain yang elegan, teknologi terbaru, dan cahaya yang menyeluruh, lampu tidur ini akan menjadi teman setia Anda di malam hari. Sempurna untuk menambahkan sentuhan kesopanan dan kenyamanan di ruang tidur Anda, lampu tidur ini adalah pilihan yang tak terelakkan bagi mereka yang menghargai kualitas dan gaya dalam setiap detail."
+            }
+          ],
+        },
+        methods: {
+          tambahKeranjang(product) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Barang Berhasil Ditambahkan",
+              showConfirmButton: false,
+              timer: 500
+            });
+            const existingProduct = this.listKeranjang.find(item => item.id === product.id);
+
+            if (existingProduct) {
+              existingProduct.quantity++;
+            } else {
+              this.listKeranjang.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                quantity: 1,
+                gambar: product.gambar,
+                description: product.description
+              });
+            }
+
+            localStorage.setItem('totalBarang', this.totalBarang += 1);
+            localStorage.setItem('listKeranjang', JSON.stringify(this.listKeranjang));
+          },
+          clearCart() {
+            Swal.fire({
+              title: "Hapus keranjang?",
+              text: "Apakah kamu mau menghapus semua barang yang ada di keranjang?",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Ya, hapus"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: "Success",
+                  text: "Keranjang berhasil dihapus silahkan masukan barang lainnya 😊",
+                  icon: "success",
+                });
+                localStorage.removeItem('listKeranjang');
+                localStorage.removeItem('totalBarang');
+                this.keranjang = 0;
+                this.totalBarang = 0;
+                this.listKeranjang = []
+              }
+            });
+          },
+          cekCart() {
+            window.location = "cart.html";
+          },
+          lihatProduk(id, gambar, name, price, description) {
+            window.location = "product.html?id=" + id + "&gambar=" + gambar + "&name=" + name + "&price=" + price + "&desc=" + description
+          }
+        },
+        computed: {
+          filteredItems: function() {
+            var self = this;
+            return this.product.filter(function(item) {
+            return item.name.toLowerCase().indexOf(self.search.toLowerCase()) !== -1;
+          });
+          }
+        },
+      });
+
+      tailwind.config = {
+        content: ["./*.html"],
+        darkMode: "class"
+      };
+      
+    });
+    
+
+    </script>
+  </body>
+</html>
